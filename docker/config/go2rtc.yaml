@@ -1,0 +1,14 @@
+api:
+  listen: ":1984"
+
+# Disable RTSP and WebRTC listeners — streams are served via the API only
+rtsp:
+  listen: ""
+
+webrtc:
+  listen: ""
+
+# No static streams defined here.
+# The HA component (SharedCam) manages all stream registrations at runtime
+# via PUT /api/streams when a switch entity is turned on.
+# streams: {}

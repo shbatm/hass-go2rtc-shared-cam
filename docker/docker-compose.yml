@@ -1,0 +1,49 @@
+services:
+  go2rtc:
+    image: alexxit/go2rtc:latest
+    container_name: go2rtc-shared
+    restart: unless-stopped
+    volumes:
+      - ./config:/config
+    networks:
+      - internal-net
+    # Uncomment if HA is not on the same Docker network (exposes API to host)
+    # ports:
+    #   - "1984:1984"
+
+  caddy:
+    image: caddy:latest
+    container_name: go2rtc-caddy
+    restart: unless-stopped
+    environment:
+      # Optional — only required if using the SharedCam status template feature
+      - HA_TOKEN=${HA_TOKEN:-}
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./www:/www:ro
+      - caddy_data:/data
+    networks:
+      - internal-net  # Reaches go2rtc (and HA, if on this network)
+      - external-net  # Reachable by your external reverse proxy
+    depends_on:
+      - go2rtc
+    # Uncomment if exposing Caddy directly without an external reverse proxy
+    # ports:
+    #   - "80:80"
+
+volumes:
+  caddy_data:
+
+networks:
+  # Internal network — shared with your HA instance and other internal services.
+  # Replace name with your existing internal network, or remove `external: true`
+  # and let Compose create it.
+  internal-net:
+    external: true
+    name: internal-net
+
+  # External network — shared with your reverse proxy.
+  # Replace name with your existing proxy network.
+  external-net:
+    external: true
+    name: external-net

@@ -1,0 +1,12 @@
+{
+  "domain": "sharedcam",
+  "name": "SharedCam",
+  "codeowners": ["@shbatm"],
+  "config_flow": true,
+  "after_dependencies": ["frigate"],
+  "dependencies": ["http"],
+  "documentation": "https://github.com/shbatm/hass-go2rtc-shared-cam",
+  "iot_class": "local_polling",
+  "requirements": ["go2rtc-client==0.4.0"],
+  "version": "0.1.0"
+}

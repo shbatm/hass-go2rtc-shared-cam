@@ -1,0 +1,29 @@
+:80 {
+    # go2rtc WebSocket stream endpoint and player libraries
+    @go2rtc {
+        path /video-rtc.js /video-stream.js /api/ws*
+    }
+    handle @go2rtc {
+        reverse_proxy go2rtc-shared:1984
+    }
+
+    # Optional: HA status proxy — only needed if using the SharedCam status
+    # template feature. Remove this block entirely if not using it.
+    # Replace <ha-host>:<ha-port> with your HA instance's address and port.
+    handle /status* {
+        rewrite * /api/sharedcam{uri}
+        reverse_proxy http://<ha-host>:<ha-port> {
+            header_up Authorization "Bearer {$HA_TOKEN}"
+            header_up -X-Forwarded-For
+            header_up -X-Forwarded-Proto
+            header_up -X-Forwarded-Host
+            flush_interval -1
+        }
+    }
+
+    # Viewer page and static assets
+    handle {
+        root * /www
+        file_server
+    }
+}
