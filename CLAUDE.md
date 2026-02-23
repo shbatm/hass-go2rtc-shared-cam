@@ -2,6 +2,19 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Contributing / Git Workflow
+
+**Do NOT push directly to `main`.** All changes must use a feature branch and PR:
+
+```bash
+git checkout -b <feature-branch>
+# make changes, commit
+git push origin <feature-branch>
+gh pr create --base main
+```
+
+After a PR is merged, mirror to Gitea: `git push gitea main:github-main`
+
 ## Project Overview
 
 This is a HACS-compatible Home Assistant custom component (`custom_components/sharedcam`) that manages a standalone go2rtc container for sharing camera streams with authenticated external viewers.
