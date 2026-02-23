@@ -9,6 +9,9 @@ on:
       - main
   schedule:
     - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions: {}
 
 jobs:
   validate:
@@ -19,3 +22,4 @@ jobs:
         uses: "hacs/action@main"
         with:
           category: "integration"
+          ignore: "brands"
