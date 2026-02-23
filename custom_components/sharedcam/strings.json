@@ -11,7 +11,7 @@
           "friendly_name": "Friendly name (optional)"
         },
         "data_description": {
-          "go2rtc_url": "Base URL of the standalone go2rtc instance (e.g. https://go2rtc-shared.example.com)",
+          "go2rtc_url": "Base URL of the standalone go2rtc instance, including protocol and port if non-standard.",
           "frigate_url": "RTSP base URL of your Frigate instance. Auto-populated from Frigate's configured host on port 8554 when Frigate is loaded; adjust if your RTSP port differs.",
           "camera_name": "go2rtc stream name from Frigate's config. Auto-populated as a dropdown when Frigate is loaded; enter manually otherwise.",
           "friendly_name": "Human-readable label used in entity names"
