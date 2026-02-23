@@ -1,4 +1,4 @@
-# hass-go2rtc-shared-cam
+# Home Assistant Shared Cam
 
 A HACS-compatible Home Assistant custom component that manages a **standalone go2rtc instance** for sharing camera streams with authenticated external viewers.
 
