@@ -16,20 +16,19 @@
           "camera_name": "go2rtc stream name from Frigate's config. Auto-populated as a dropdown when Frigate is loaded; enter manually otherwise.",
           "friendly_name": "Human-readable label used in entity names"
         }
+      },
+      "options": {
+        "title": "SharedCam Options",
+        "data": {
+          "show_viewers": "Show viewer count",
+          "status_template": "Status template (optional)"
+        },
+        "data_description": {
+          "show_viewers": "When disabled, the /status endpoint will not send the live count to the viewer.",
+          "status_template": "Jinja2 template rendered to a plain string and surfaced as `status` in the /status JSON endpoint and SSE stream. May reference any HA entity state or attribute. Leave blank to omit."
+        }
       }
     },
-    "options": {
-      "title": "SharedCam Options",
-      "data": {
-        "show_viewers": "Show viewer count",
-        "status_template": "Status template (optional)"
-      },
-      "data_description": {
-        "show_viewers": "When disabled, the /status endpoint will not send the live count to the viewer.",
-        "status_template": "Jinja2 template rendered to a plain string and surfaced as `status` in the /status JSON endpoint and SSE stream. May reference any HA entity state or attribute. Leave blank to omit."
-      }
-    }
-  },
     "error": {
       "cannot_connect": "Unable to reach go2rtc-shared API. Check the URL and network access.",
       "camera_exists": "A camera with this name is already configured."
